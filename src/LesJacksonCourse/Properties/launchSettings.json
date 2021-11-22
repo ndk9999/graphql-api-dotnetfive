@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "LesJacksionCourse": {
+    "LesJacksonCourse": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
