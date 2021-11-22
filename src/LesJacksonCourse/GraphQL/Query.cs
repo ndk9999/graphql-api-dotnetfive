@@ -6,7 +6,8 @@ namespace LesJacksonCourse.GraphQL
     public class Query
     {
         [UseDbContext(typeof(AppDbContext))]
-        [UseProjection]         // Do not use this attribute when we use GraphQL types & resolvers
+        [UseFiltering, UseSorting]
+        // [UseProjection]         // Do not use this attribute when we use GraphQL types & resolvers
         public IQueryable<Platform> GetPlatforms([ScopedService] AppDbContext context)
         {
             return context.Platforms;
@@ -14,7 +15,8 @@ namespace LesJacksonCourse.GraphQL
 
 
         [UseDbContext(typeof(AppDbContext))]
-        [UseProjection]         // Do not use this attribute when we use GraphQL types & resolvers
+        [UseFiltering, UseSorting]
+        // [UseProjection]         // Do not use this attribute when we use GraphQL types & resolvers
         public IQueryable<Command> GetCommands([ScopedService] AppDbContext context)
         {
             return context.Commands;

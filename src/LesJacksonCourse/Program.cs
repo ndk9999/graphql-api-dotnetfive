@@ -1,6 +1,8 @@
 using GraphQL.Server.Ui.Voyager;
 using LesJacksonCourse.Data;
 using LesJacksonCourse.GraphQL;
+using LesJacksonCourse.GraphQL.Platforms;
+using LesJacksonCourse.GraphQL.Commands;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +14,13 @@ builder.Services.AddPooledDbContextFactory<AppDbContext>(options =>
 builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
-    .AddProjections();          // Do not use this method when we use GraphQL types & resolvers
+    .AddMutationType<Mutation>()
+    .AddType<PlatformType>()
+    .AddType<CommandType>()
+    //.AddQueryableOffsetPagingProvider()
+    .AddFiltering()
+    .AddSorting();
+    // .AddProjections();          // Do not use this method when we use GraphQL types & resolvers
 
 var app = builder.Build();
 
