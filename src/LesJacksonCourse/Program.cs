@@ -15,16 +15,20 @@ builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
     .AddMutationType<Mutation>()
+    .AddSubscriptionType<Subscription>()
     .AddType<PlatformType>()
     .AddType<CommandType>()
     //.AddQueryableOffsetPagingProvider()
     .AddFiltering()
-    .AddSorting();
+    .AddSorting()
+    .AddInMemorySubscriptions();
     // .AddProjections();          // Do not use this method when we use GraphQL types & resolvers
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseWebSockets();
+
 app.MapGraphQL();
 
 app.MapGraphQLVoyager(new VoyagerOptions() {
